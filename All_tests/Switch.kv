@@ -1,0 +1,40 @@
+<Simpleswitch>:
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+
+        Label:
+            text: 'Switch Normal'
+        Switch:
+            active:False
+            on_active:root.switch_callback(self,self.active)
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+
+        Label:
+            text: 'Switch Active'
+        Switch:
+            active:True
+            on_active: root.switch_callback(self,self.active)
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+
+        Label:
+            text: ' Switch off and disabled'
+        Switch:
+            #disabled: True
+            active: False
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+
+        Label:
+            text: 'Switch on & disabled'
+        Switch:
+            disabled: True
+            active: True

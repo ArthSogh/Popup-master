@@ -1,0 +1,28 @@
+GridLayout:
+
+    rows:1
+    cols:2
+    Touch_functions:
+    Intensity_Slider:
+
+<Touch_functions>:
+    canvas.before:
+        Color:
+            rgba: [1, 1, 1, app.intensity_value]
+        Ellipse:
+            pos: root.coord_x - root.zoom/2, root.coord_y- root.zoom/2
+            size: root.zoom ,root.zoom
+
+
+<Intensity_Slider@BoxLayout>:
+    Widget:
+        size_hint: 2,1
+    Slider:
+        orientation: 'vertical'
+        min:0
+        max:100
+        value_track: True
+        value_track_color: [1, 1, 1, 1]
+        on_value:
+            app.intensity_value = int(self.value)/100
+            #print(app.intensity_value)

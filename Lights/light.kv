@@ -1,0 +1,89 @@
+<kivy_super_box>:
+    GridLayout:
+        cols: 1
+        rows:1
+        BoxLayout:
+            orientation: 'vertical'
+
+            Image:
+                source: 'screen.png'
+
+            BoxLayout:
+                id : superbox
+                size_hint: (1,None)
+                height: 50
+
+                Slider:
+                    id: slider
+                    min:0
+                    max:100
+                    value: 0
+                    value_track: True
+                    value_track_color: [1, 0, 0, 1]
+                    on_value:label1.text = str(int(self.value))
+
+                Slider:
+                    id: slider2
+                    min:0
+                    max:100
+                    value: 0
+                    value_track: True
+                    value_track_color: [1, 0, 0, 1]
+                    on_value:label2.text = str(int(self.value))
+
+                Slider:
+                    id: slider3
+                    min:0
+                    max:100
+                    value: 0
+                    value_track: True
+                    value_track_color: [1, 0, 0, 1]
+                    on_value:label3.text = str(int(self.value))
+
+                Button:
+                    id: btn1
+                    text:'Save Opacity'
+                    font_name: "fonts/Lcd.ttf"
+                    font_size: '20dp'
+                    background_color: [0, 1, 0, 1]
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                    on_press: root.save_opacity()
+
+
+        Label:
+            id:label1
+            pos: 100,4
+            text:"0"
+
+            canvas:
+                Color:
+                    rgba: (1, 1, 1, 1*int(slider.value)/100) if label1.text is not '' else (1,1,1,1)
+                Rectangle:
+                    pos: (293, 403)
+                    size: (215, 127)
+
+        Label:
+            id:label2
+            pos: 300,4
+            pos_hint: {'x': 0, 'y': 0.8}
+            text:"0"
+
+            canvas:
+                Color:
+                    rgba: (1, 1, 1, 1*int(slider2.value)/100) if label2.text is not '' else (1,1,1,1)
+                Rectangle:
+                    pos: (293, 276)
+                    size: (215, 127)
+
+        Label:
+            id:label3
+            pos: 500,4
+            pos_hint: {'x': 0, 'y': 0.8}
+            text:"0"
+
+            canvas:
+                Color:
+                    rgba: (1, 1, 1, 1*int(slider3.value)/100) if label3.text is not '' else (1,1,1,1)
+                Rectangle:
+                    pos: (293, 149)
+                    size: (215, 127)

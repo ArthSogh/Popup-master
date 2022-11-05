@@ -1,0 +1,62 @@
+GridLayout:
+
+
+    rows:3
+    cols:3
+    Inside2:
+        source_number: 0
+    Inside2:
+        source_number: 1
+    Inside2:
+        source_number: 2
+    Inside2:
+        source_number: 3
+    Inside2:
+        source_number: 4
+    Inside2:
+        source_number: 5
+    Inside2:
+        source_number: 6
+    Inside2:
+        source_number: 7
+    Inside2:
+        source_number: 8
+    Touch:
+
+
+<Inside2@BoxLayout>:
+
+    orientation: 'vertical'
+
+    canvas.before:
+        Color:
+            rgba: [1, 1, 1,app.intensities[self.source_number]]
+        Ellipse:
+            pos: self.center_x - 2*self.height * app.sizes[self.source_number]/2, self.center_y - 2*self.height * app.sizes[self.source_number]/2
+            size: 2*self.height * app.sizes[self.source_number],2*self.height * app.sizes[self.source_number]
+
+    source_number: 0
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: 1,5
+        Widget:
+            size_hint: 5,1
+        Slider:
+            orientation: "vertical"
+            min:0
+            max:100
+            value_track: True
+            value_track_color: [1, 1, 1, 1]
+            on_value:
+                app.sizes[self.parent.parent.source_number] = int(self.parent.children[0].value)/100
+
+
+    Slider:
+        min:0
+        max:100
+        value_track: True
+        value_track_color: [1, 1, 1, 1]
+        on_value:
+            app.intensities[self.parent.source_number] = int(self.parent.children[0].value)/100
+

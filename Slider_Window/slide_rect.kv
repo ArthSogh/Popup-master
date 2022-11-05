@@ -1,0 +1,43 @@
+<screen_slide>:
+
+    name: name
+    email: email
+    GridLayout:
+        cols :1
+        size : root.width -200, root.height -200
+        pos: 100,100
+
+        GridLayout:
+            cols:2
+
+            Label:
+                text: "Name :"
+            TextInput:
+                id: name
+                multiline: False
+            Label:
+                text: "Email :"
+            TextInput:
+                id: email
+                multiline: False
+
+            Slider:
+                min:0
+                max:100
+                value: 0
+                value_track: True
+                value_track_color: [1, 0, 0, 1]
+                on_value:label.text = str(int(self.value))
+                on_value:print(label.text)
+
+                Label:
+                    id:label
+                    text:"0"
+
+
+        Button:
+            text:"Submit"
+            background_color: (0.2, 1*int(label.text)/100, 1, 1) if label.text is not '' else (1,1,1,1)
+            on_press: root.btn() #root widget is mygrid (current one) class
+            on_press: root.addition()
+

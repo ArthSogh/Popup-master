@@ -1,0 +1,35 @@
+<MyButton@Button>:
+    size_hint: [None,None]
+    size: [100,100]
+
+<Constructor_Button>:
+
+
+    BoxLayout:
+
+        orientation: 'horizontal'
+
+        Button:
+            text: 'Light1'
+            size_hint: 0.2,0.2
+            on_release: app.other()
+
+        Button:
+            text: 'Button2'
+            size_hint: 0.2,0.2
+            on_release: app.stop()
+        Button:
+            text: 'Button3'
+            size_hint: 0.2,0.2
+            on_release: app.stop()
+
+<Constructor_Light>:
+    Label:
+        text: "hello"
+
+    BoxLayout:
+        Button:
+            text: 'Widget1'
+            size_hint: 0.35,1
+            pos_hint_x: 100
+            pos_hint_y: 100

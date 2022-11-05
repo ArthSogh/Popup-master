@@ -1,0 +1,64 @@
+<Menu>:
+    Button:
+
+        text: "Go to lights"
+        font_size:32
+        #on_press: app.show_opencv()
+        #on_release: root.btn()
+        on_release:
+            root.manager.transition.direction = 'left'
+            root.manager.current ="Ecran2"
+
+<Widgets0>:
+    BoxLayout:
+        orientation:"vertical"
+        size : 200, 200 #root.height #root.width pour tout occuper
+
+        Button:
+            text:"Position 1"
+            font_size:32
+            on_release: app.show_opencv()
+            on_press: root.btn()
+            #on_release: root.manager.current ="Ecran2"
+<P>:
+    Label:
+        text: "Info about lights"
+        font_size:32
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1}
+
+    Button:
+        text: "Back to menu"
+        font_size:32
+        size_hint: 0.8, 0.2
+        pos_hint: {"x":0.1, "y":0.1}
+        on_press:
+            root.manager.transition.direction = 'right'
+            root.manager.current ="Ecran1"
+
+<P2>:
+    Label:
+        text: "Info about lights"
+        font_size:32
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1}
+
+    Button:
+        text: "Back to menu"
+        font_size:32
+        size_hint: 0.8, 0.2
+        pos_hint: {"x":0.1, "y":0.1}
+        #on_press:
+         #   root.manager.transition.direction = 'right'
+          #  root.manager.current ="Ecran1"
+
+
+<PressureSlider@MDSlider>:
+    orientation: 'vertical'
+    min: 0
+    max: 800
+    value: 0
+    step: 10
+    color: app.theme_cls.accent_color
+    show_off: False
+    on_press: root.manager.current ="Ecran1"

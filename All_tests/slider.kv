@@ -1,0 +1,33 @@
+<CircleWidget>:
+    canvas:
+        Color:
+            rgba: self.r,1,1,1
+        Ellipse:
+            pos: self.pos
+            size: self.size
+<screen_slider>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        Image:
+            source: 'screen.png'
+
+        BoxLayout:
+            size_hint: (1, None)
+            height: 50
+
+            Slider:
+                min:0
+                max:100
+                value_track: True
+                value_track_color: [1, 0, 0, 1]
+                on_value:label.text = str(int(self.value))
+            Label:
+                id:label
+                text:"0"
+
+
+            ToggleButton:
+                text:'Pos1'
+                pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
