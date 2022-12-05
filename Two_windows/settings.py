@@ -20,7 +20,8 @@ Screen:
         Button:
             text: 'Button2'
             size_hint: 0.2,0.2
-            on_release: app.stop()
+            on_release: print('hello')
+            
         Button:
             text: 'Button3'
             size_hint: 0.2,0.2            

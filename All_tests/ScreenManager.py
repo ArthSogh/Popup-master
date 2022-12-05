@@ -22,7 +22,6 @@ from kivy.uix.label import Label
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivymd.uix.slider import MDSlider
 
 
 class Menu(Screen):

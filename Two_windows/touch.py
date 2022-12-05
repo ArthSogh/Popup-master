@@ -2,8 +2,6 @@
 
 """TO USE WHEN WE WANT TO CREATE A COMMUNICATION BETWEEN LIGHTS AND THE APP"""
 
-
-
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.screenmanager import Screen
