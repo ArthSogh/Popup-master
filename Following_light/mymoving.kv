@@ -2,10 +2,10 @@ GridLayout:
 
     rows:1
     cols:2
-    Touch_functions:
-    Intensity_Slider:
+    TouchFunctions:
+    IntensitySlider:
 
-<Touch_functions@Widget>:
+<TouchFunctions@Widget>:
     canvas.before:
         Color:
             rgba: [1, 1, 1, app.intensity_value]
@@ -14,7 +14,7 @@ GridLayout:
             size: root.zoom ,root.zoom
 
 
-<Intensity_Slider@BoxLayout>:
+<IntensitySlider@BoxLayout>:
     Widget:
         size_hint: 2,1
     BoxLayout:
@@ -27,7 +27,6 @@ GridLayout:
             Button:
                 background_color: 0,0,0,0
                 text: 'MAX'
-                on_press: root.montre() # trying to make a Max and Min value
             Widget:
                 size_hint: 1,1
         Slider:
@@ -38,7 +37,6 @@ GridLayout:
             value_track_color: [1, 1, 1, 1]
             on_value:
                 app.intensity_value = int(self.value)/100
-                #print(app.intensity_value)
         BoxLayout:
             orientation: 'horizontal'
             size_hint: 1,0.1
@@ -47,6 +45,5 @@ GridLayout:
             Button:
                 background_color: 0,0,0,0
                 text: 'MIN'
-                on_press: print('clicked')
             Widget:
                 size_hint: 1,1
