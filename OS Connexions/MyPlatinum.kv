@@ -1,0 +1,21 @@
+GridLayout:
+
+    rows:1
+    cols:2
+    TouchFunctionsPlatinum:
+
+<TouchFunctionsPlatinum@Widget>:
+    btn: btn
+    canvas.before:
+        Color:
+            rgba: [1, 0, 0.2,0.7]
+        Ellipse:
+            pos: root.coord_x_plat - root.zoom/2, root.coord_y_plat - root.zoom/2
+            size: root.zoom ,root.zoom
+
+    Button:
+        id: btn
+        text: "Turn ON lights"
+        pos: 686,13
+        size: 100,50
+        on_release: root.btn_touch_up()

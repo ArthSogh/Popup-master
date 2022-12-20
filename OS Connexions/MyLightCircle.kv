@@ -1,0 +1,59 @@
+GridLayout:
+
+    rows:1
+    cols:2
+    TouchFunctionsLightCircle:
+    IntensitySlider:
+
+<TouchFunctionsLightCircle@Widget>:
+    btn3: btn3
+    canvas.before:
+        Color:
+            rgba: [1, 1, 1, app.intensity_value]
+        Ellipse:
+            pos: root.coord_x_plat - root.zoom/2, root.coord_y_plat - root.zoom/2
+            size: root.zoom ,root.zoom
+
+    Button:
+        id: btn3
+        text: "cl"
+        pos: 306,103
+        size: 100,50
+        on_release: btn3.text = str(root.coord_x_plat)
+
+<IntensitySlider@BoxLayout>:
+    Widget:
+        size_hint: 2,1
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1,0.1
+            Widget:
+                size_hint: 1,1
+            Button:
+                background_color: 0,0,0,0
+                text: 'MAX'
+            Widget:
+                size_hint: 1,1
+        Slider:
+            orientation: 'vertical'
+            min:0
+            max:100
+            value_track: True
+            value_track_color: [1, 1, 1, 1]
+            on_value:
+                app.intensity_value = int(self.value)/100
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1,0.1
+            Widget:
+                size_hint: 1,1
+            Button:
+                background_color: 0,0,0,0
+                text: 'MIN'
+            Widget:
+                size_hint: 1,1
+
+
+
