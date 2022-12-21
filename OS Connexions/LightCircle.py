@@ -13,6 +13,8 @@ class TouchFunctionsLightCircle(Widget):
         - Circle is moving position only if you move the mouse by holding the click
     """
 
+    # print(str(Platinum.TouchFunctionsPlatinum.x))
+
     coord_x_plat = Platinum.TouchFunctionsPlatinum.coord_x_plat
     coord_y_plat = Platinum.TouchFunctionsPlatinum.coord_y_plat
     coord_x_circle = NumericProperty(360)

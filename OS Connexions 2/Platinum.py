@@ -15,11 +15,8 @@ class TouchFunctionsPlatinum(Widget):
     coord_y_plat = NumericProperty(100)
     zoom = NumericProperty(200)
 
-    global x
     def on_touch_move(self, touch):
-        print(self.coord_x_plat)
-        x = self.coord_x_plat
-        print('x',x)
+        # print(touch)
         if not touch.is_mouse_scrolling:
             if (touch.pos[0] < self.coord_x_plat + self.zoom/2
                     and touch.pos[1] < self.coord_y_plat + self.zoom/2):
@@ -27,7 +24,7 @@ class TouchFunctionsPlatinum(Widget):
                         and touch.pos[1] > self.coord_y_plat - self.zoom/2):
                     self.coord_x_plat = (touch.pos[0])
                     self.coord_y_plat = (touch.pos[1])
-
+                    print(self.coord_x_plat)
 
 
     def btn_touch_up(self):

@@ -2,26 +2,19 @@ GridLayout:
 
     rows:1
     cols:2
-    TouchFunctionsLightCircle:
-    IntensitySlider:
+    Touch_functions:
+    Intensity_Slider:
 
-<TouchFunctionsLightCircle@Widget>:
-    btn3: btn3
+<Touch_functions@Widget>:
     canvas.before:
         Color:
             rgba: [1, 1, 1, app.intensity_value]
         Ellipse:
-            pos: root.coord_x_plat - root.zoom/2, root.coord_y_plat - root.zoom/2
+            pos: root.coord_x - root.zoom/2, root.coord_y- root.zoom/2
             size: root.zoom ,root.zoom
 
-    Button:
-        id: btn3
-        text: "cl"
-        pos: 306,103
-        size: 100,50
-        on_release: print("hello") # btn3.text = str(root.coord_x_plat)
 
-<IntensitySlider@BoxLayout>:
+<Intensity_Slider@BoxLayout>:
     Widget:
         size_hint: 2,1
     BoxLayout:
@@ -34,16 +27,19 @@ GridLayout:
             Button:
                 background_color: 0,0,0,0
                 text: 'MAX'
+                on_press: root.montre() # trying to make a Max and Min value
             Widget:
                 size_hint: 1,1
         Slider:
             orientation: 'vertical'
             min:0
             max:100
+            value: 70
             value_track: True
             value_track_color: [1, 1, 1, 1]
             on_value:
                 app.intensity_value = int(self.value)/100
+                #print(app.intensity_value)
         BoxLayout:
             orientation: 'horizontal'
             size_hint: 1,0.1
@@ -52,8 +48,6 @@ GridLayout:
             Button:
                 background_color: 0,0,0,0
                 text: 'MIN'
+                on_press: print('clicked')
             Widget:
                 size_hint: 1,1
-
-
-
