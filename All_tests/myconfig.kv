@@ -1,0 +1,127 @@
+BoxLayout:
+    ConfigPage
+
+<ConfigPage@GridLayout>:
+    rows:3
+    cols:4
+    c1:c1
+    a1:a1
+    btn:btn
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+        id:a1
+        Label:
+            text: 'Switch A1'
+        Switch:
+            active:0
+
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+
+        Label:
+            text: 'Switch C1'
+        Switch:
+            id:c1
+            active:1
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+        id:r1
+
+        Label:
+            text: 'Switch R1'
+        Switch:
+            active:1
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+        id:o1
+
+        Label:
+            text: 'Switch O1'
+        Switch:
+            active:1
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+        id:cr_a
+
+        Label:
+            text: 'Switch CRA'
+        Switch:
+            active:1
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+        id:cr_o
+
+        Label:
+            text: 'Switch CRO'
+        Switch:
+            active:1
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+        id:v7
+
+        Label:
+            text: 'Switch X'
+        Switch:
+            active:1
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+        id:prod
+
+        Label:
+            text: 'Switch PROD'
+        Switch:
+            active:1
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+        id:da
+
+        Label:
+            text: 'Switch DA'
+        Switch:
+            active:1
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+        id:do
+
+        Label:
+            text: 'Switch DO'
+        Switch:
+            active:1
+
+    BoxLayout:
+        size_hint_y: None
+        height: '48dp'
+        id:purge
+
+        Label:
+            text: 'Switch PURGE'
+        Switch:
+            active:1
+
+    Button:
+        id:btn
+        on_release: root.configrelays()
+

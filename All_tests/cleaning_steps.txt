@@ -1,0 +1,30 @@
+Prod : Production phase
+O1 : Organic Valve
+C1 : Cleaning fluid
+R1 : Rinsing fluid
+CR_A : Cleaning/Rinsing Aqueous
+CR_O : Cleaning/Rinsing Organic
+DA : Trash Aqueous
+DO : Tash Organic
+
+A : Aqueous phase
+C : Cleaning Fluid
+R : Rinsing fluid
+O : Organic phase
+
+Cleaning steps:
+
+Step1 (30sec)   : Open DA, close Prod, Close O1, Open R1, Open CR_O, Open DO (Cleaning canals with Rinsing fluid (R) and water(A))
+Step2 (5sec)    : Close DO 
+Step3 (20sec)   : Close A1, Close R1, Open C1, Open CRA, Open DO (Cleaning same canals BUT with only CLeaning Fluid (C))
+Step4 (600sec)  : Close CRA, Close DO (Hudge cleaning of the RED canal : C1 --> CRO --> RED Canal --> DA --> Trash)
+Step5 (600sec)  : Open CRA, Open DO, Wait 10s, Close CRO, Close DA (Same for the BLUE canal)
+Step6 (1800sec) : Close ALL, Close CRA, Close C1, Close DO (Letting fluid inside the canals)
+Step7 (40sec)   : Open DA, Open DO, Open CRA, Open CRO, Open C1 (Simultaneous cleaning for boths canals)
+Step8 (40sec)   : Close C1, CLose CRA, Open A1, Wait 1min, Open R1 (Water cleaning both canals, then completing bise Rinsing Fluid (R))
+Step9 (5sec)    : Close R1, CRO, DO, O1, Open Purge and O1 (Cleaning with Organic phase)
+Step10 (20sec)  : Open DO, CLose Purge (same)
+Step11 (180sec) : Close DO
+Step12 ()  :	Open Prod, Close DA (Production with Organic and Water phase)
+
+ 
