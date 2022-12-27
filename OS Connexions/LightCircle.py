@@ -4,6 +4,8 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
 import Platinum
 
+Tfp = Platinum.TouchFunctionsPlatinum()
+
 class TouchFunctionsLightCircle(Widget):
     """
         - This class need to make a lightcircle which will follow each position of the platinum
@@ -15,7 +17,7 @@ class TouchFunctionsLightCircle(Widget):
 
     # print(str(Platinum.TouchFunctionsPlatinum.x))
 
-    coord_x_plat = Platinum.TouchFunctionsPlatinum.coord_x_plat
+    coord_x_plat = Tfp.affiche(92)
     coord_y_plat = Platinum.TouchFunctionsPlatinum.coord_y_plat
     coord_x_circle = NumericProperty(360)
     coord_y_circle = NumericProperty(300)
