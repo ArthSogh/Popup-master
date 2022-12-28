@@ -3,6 +3,20 @@ from kivy.properties import NumericProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
 import Platinum
+import socket
+
+host, port = ('', 5566)
+socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+socket.bind((host, port))
+print("Serveur demarré")
+
+while True:
+    socket.listen(5)
+    conn, address = socket.accept()
+    print("En ecoute ...")
+
+conn.close()
+socket.close()
 
 Tfp = Platinum.TouchFunctionsPlatinum()
 
@@ -17,7 +31,8 @@ class TouchFunctionsLightCircle(Widget):
 
     # print(str(Platinum.TouchFunctionsPlatinum.x))
 
-    coord_x_plat = Tfp.affiche(92)
+    #coord_x_plat = Tfp.affiche(92)
+    coord_x_plat = Platinum.TouchFunctionsPlatinum.coord_x_plat
     coord_y_plat = Platinum.TouchFunctionsPlatinum.coord_y_plat
     coord_x_circle = NumericProperty(360)
     coord_y_circle = NumericProperty(300)
@@ -32,6 +47,7 @@ class TouchFunctionsLightCircle(Widget):
                 self.zoom -= 40
                 if self.zoom <= 100:  # Minimum Size
                     self.zoom = 100
+
 
 
 class MyLightCircleApp(App):

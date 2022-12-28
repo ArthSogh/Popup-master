@@ -6,7 +6,21 @@ from kivy.uix.button import Button
 from subprocess import Popen, PIPE
 import rpyc
 
-c = rpyc.classic.connect("localhost")
+#c = rpyc.classic.connect("localhost")
+
+import socket
+
+host, port = ('localhost',5566)
+socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+
+try:
+    socket.bind((host,port))
+    print("Client demarré")
+except:
+    print("Connexion échue")
+finally:
+    socket.close()
+
 
 class TouchFunctionsPlatinum(Widget):
     """
@@ -18,7 +32,7 @@ class TouchFunctionsPlatinum(Widget):
     coord_y_plat = NumericProperty(100)
     zoom = NumericProperty(200)
 
-    def affiche(self,code):
+    """def affiche(self,code):
         def telep(y):
             return y+50
 
@@ -27,7 +41,7 @@ class TouchFunctionsPlatinum(Widget):
 
         print("Position en temps réel en x : ", self.coord_x_plat, file=c.modules.sys.stdout)
         print("Position en temps réel en x +1 : ", fn(self.coord_x_plat), file=c.modules.sys.stdout)
-        return fn(self.coord_x_plat)
+        return fn(self.coord_x_plat)"""
 
     def on_touch_move(self, touch):
         """def telep(y):
@@ -50,7 +64,7 @@ class TouchFunctionsPlatinum(Widget):
                         and touch.pos[1] > self.coord_y_plat - self.zoom/2):
                     self.coord_x_plat = (touch.pos[0])
                     self.coord_y_plat = (touch.pos[1])
-                    self.affiche(92)
+                    #self.affiche(92)
 
 
     def btn_touch_up(self):
