@@ -3,20 +3,6 @@ from kivy.properties import NumericProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
 import Platinum
-import socket
-
-host, port = ('', 5566)
-socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-socket.bind((host, port))
-print("Serveur demarré")
-
-while True:
-    socket.listen(5)
-    conn, address = socket.accept()
-    print("En ecoute ...")
-
-conn.close()
-socket.close()
 
 Tfp = Platinum.TouchFunctionsPlatinum()
 

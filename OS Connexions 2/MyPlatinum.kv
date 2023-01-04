@@ -1,11 +1,14 @@
 GridLayout:
 
-    rows:1
-    cols:2
+    rows:2
+    cols:1
     TouchFunctionsPlatinum:
+
 
 <TouchFunctionsPlatinum@Widget>:
     btn: btn
+    zoom_label: zoom_label
+    lbl_opponent_value: lbl_opponent_value
     canvas.before:
         Color:
             rgba: [1, 0, 0.2,0.7]
@@ -13,9 +16,28 @@ GridLayout:
             pos: root.coord_x_plat - root.zoom/2, root.coord_y_plat - root.zoom/2
             size: root.zoom ,root.zoom
 
-    Button:
-        id: btn
-        text: "Turn ON lights"
-        pos: 686,13
-        size: 100,50
-        on_release: root.btn_touch_up()
+    GridLayout:
+        size_hint: (1, 0.3)
+        Label:
+            text: str(root.coord_x_plat)
+            font_size:'40sp'
+            pos: 690,40
+
+        Label:
+            id: zoom_label
+            text: "Zoom_Cl2"
+            font_size:'20sp'
+            pos: 690,80
+        Label:
+            id: lbl_opponent_value
+            text: "Opponent Result :"
+            font_size:'20sp'
+            pos: 690,150
+
+        Button:
+            id: btn
+            text: "Turn ON lights"
+            pos: 690,10
+            size: 100,50
+            on_release: root.btn_touch_up()
+

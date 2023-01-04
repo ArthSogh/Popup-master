@@ -4,23 +4,6 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
 from kivy.uix.button import Button
 from subprocess import Popen, PIPE
-import rpyc
-
-#c = rpyc.classic.connect("localhost")
-
-import socket
-
-host, port = ('localhost',5566)
-socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-
-try:
-    socket.bind((host,port))
-    print("Client demarré")
-except:
-    print("Connexion échue")
-finally:
-    socket.close()
-
 
 class TouchFunctionsPlatinum(Widget):
     """

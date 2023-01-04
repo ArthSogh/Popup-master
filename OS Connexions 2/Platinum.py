@@ -1,3 +1,6 @@
+#---------------------------------------------------------------------------CLIENT 1
+import threading
+
 from kivy.app import App
 from kivy.properties import NumericProperty
 from kivy.uix.boxlayout import BoxLayout
@@ -6,10 +9,16 @@ from kivy.uix.button import Button
 from subprocess import Popen, PIPE
 
 import socket
+#
+# host, port = ('localhost', 5566)
+# socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-host, port = ('localhost', 5566)
-socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+cl2_label = ""
+cl1_label = ""
 
+# network client platinum
+client = None
+HOST_ADDR, HOST_PORT = ('localhost', 5566)
 
 class TouchFunctionsPlatinum(Widget):
     """
@@ -17,23 +26,68 @@ class TouchFunctionsPlatinum(Widget):
     following light.
     """
 
-    coord_x_plat = NumericProperty(100)
-    coord_y_plat = NumericProperty(100)
+    coord_x_plat = NumericProperty(200)
+    coord_y_plat = NumericProperty(400)
     zoom = NumericProperty(200)
 
-    try:
-        socket.connect((host, port))
-        print("Client Connecté ! ")
+    def connect(self):
+        global cl2_label
+        self.zoom_label["text"] = "Label of client 1: " + cl2_label
+        self.connect_to_server(cl2_label)
 
-    except ConnectionRefusedError:
-        print("Serveur echoué !")
+    def connect_to_server(self,label_value):
+        global client, HOST_PORT, HOST_ADDR, cl2_label
+        try:
+            client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            client.connect((HOST_ADDR, HOST_PORT))
+            client.send(label_value.encode())  # Send name to server after connecting
+
+            # start a thread to keep receiving message from server
+            # do not block the main thread :)
+            threading._start_new_thread(self.receive_message_from_server, (client, "m"))
+
+        except Exception as e:
+            title="ERROR!!!",
+            message="Cannot connect to host: "
+
+    def receive_message_from_server(self,sck, m):
+        global cl2_label, cl1_label
+        while True:
+            from_server = str(sck.recv(4096).decode())
+
+            if not from_server:
+                break
+
+            if from_server.startswith("welcome"):
+                if from_server == "welcome1":
+                    print(
+                            "Server says: Welcome " + cl2_label + "! Waiting for player 2"
+                    )
+                elif from_server == "welcome2":
+                    print(
+                            "Server says: Welcome " + cl2_label + "! Game will start soon"
+                    )
+
+            elif from_server.startswith("opponent_name$"):
+                cl1_label = from_server.replace("opponent_name$", "")
+                self.lbl_opponent_value["text"] = "Opponent: " + cl1_label
+
+
+        sck.close()
+
+    # try:
+    #     socket.connect((host, port))
+    #     print("Client Connecté ! ")
+    #
+    # except ConnectionRefusedError:
+    #     print("Serveur echoué !")
 
     def on_touch_move(self, touch):
         # print(touch)
 
-        data = str(self.coord_x_plat)
-        data = data.encode("utf8")
-        socket.sendall(data)
+        # data = str(self.coord_x_plat)
+        # data = data.encode("utf8")
+        # socket.sendall(data)
 
         if not touch.is_mouse_scrolling:
             if (touch.pos[0] < self.coord_x_plat + self.zoom/2

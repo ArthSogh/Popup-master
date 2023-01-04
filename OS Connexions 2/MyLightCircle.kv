@@ -7,6 +7,8 @@ GridLayout:
 
 <TouchFunctionsLightCircle@Widget>:
     btn3: btn3
+    pos_label: pos_label
+
     canvas.before:
         Color:
             rgba: [1, 1, 1, app.intensity_value]
@@ -20,6 +22,18 @@ GridLayout:
         pos: 306,103
         size: 100,50
         on_release: btn3.text = str(root.txt)
+
+    Label:
+        id: pos_label
+        text: "Pos_Cl1"
+        font_size:'40sp'
+        pos: 306,160
+
+    Label:
+        id: lbl_opponent_value
+        text: "Opponent Result :"
+        font_size:'20sp'
+        pos: 306,200
 
 <IntensitySlider@BoxLayout>:
     Widget:
