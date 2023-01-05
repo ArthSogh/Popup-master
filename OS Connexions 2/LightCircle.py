@@ -8,13 +8,13 @@ from kivy.uix.widget import Widget
 
 import socket
 
-cl2_label = ""
+cl2_label = "Zoooooom"
 cl1_label = ""
 
 # network client platinum
 client = None
-HOST_ADDR, HOST_PORT = ('localhost', 5566)
-
+HOST_ADDR = "localhost"
+HOST_PORT = 5466
 #
 # host,port = ('',5566)
 #
@@ -52,7 +52,7 @@ class TouchFunctionsLightCircle(Widget):
 
     def connect(self):
         global cl2_label
-        self.zoom_label["text"] = "Label of client 1: " + cl2_label
+        self.myname.text = "Label of client 2: " + cl2_label
         self.connect_to_server(cl2_label)
 
     def connect_to_server(self,label_value):
@@ -61,7 +61,7 @@ class TouchFunctionsLightCircle(Widget):
             client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             client.connect((HOST_ADDR, HOST_PORT))
             client.send(label_value.encode())  # Send name to server after connecting
-
+            print("connected")
             # start a thread to keep receiving message from server
             # do not block the main thread :)
             threading._start_new_thread(self.receive_message_from_server, (client, "m"))
@@ -69,7 +69,7 @@ class TouchFunctionsLightCircle(Widget):
         except Exception as e:
             title="ERROR!!!",
             message="Cannot connect to host: "
-
+            print("not conn")
     def receive_message_from_server(self,sck, m):
         global cl2_label, cl1_label
         while True:
@@ -78,20 +78,9 @@ class TouchFunctionsLightCircle(Widget):
             if not from_server:
                 break
 
-            if from_server.startswith("welcome"):
-                if from_server == "welcome1":
-                    print(
-                            "Server says: Welcome " + cl2_label + "! Waiting for player 2"
-                    )
-                elif from_server == "welcome2":
-                    print(
-                            "Server says: Welcome " + cl2_label + "! Game will start soon"
-                    )
-
             elif from_server.startswith("opponent_name$"):
                 cl1_label = from_server.replace("opponent_name$", "")
-                self.lbl_opponent_value["text"] = "Opponent: " + cl1_label
-
+                self.lbl_opponent_value.text = "Opponent: " + cl1_label
 
         sck.close()
 

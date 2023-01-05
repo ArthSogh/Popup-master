@@ -44,16 +44,12 @@ top_right_frame = tk.Frame(
 lbl_your_name = tk.Label(
     top_left_frame, text="Your name: " + your_name, font="Helvetica 13 bold"
 )
+
 lbl_opponent_name = tk.Label(top_left_frame, text="Opponent: " + opponent_name)
 lbl_your_name.grid(row=0, column=0, padx=5, pady=8)
 lbl_opponent_name.grid(row=1, column=0, padx=5, pady=8)
 top_left_frame.pack(side=tk.LEFT, padx=(10, 10))
 
-
-
-lbl_timer = tk.Label(
-    top_right_frame, text=" ", font="Helvetica 24 bold", foreground="blue"
-)
 top_right_frame.pack(side=tk.RIGHT, padx=(10, 10))
 
 top_frame.pack_forget()
@@ -84,7 +80,7 @@ def connect_to_server(name):
         client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         client.connect((HOST_ADDR, HOST_PORT))
         client.send(name.encode())  # Send name to server after connecting
-
+        print('connected')
         # disable widgets
         btn_connect.config(state=tk.DISABLED)
         ent_name.config(state=tk.DISABLED)
@@ -106,15 +102,13 @@ def connect_to_server(name):
 
 
 def receive_message_from_server(sck, m):
-    global your_name, opponent_name, game_round
-    global your_choice, opponent_choice, your_score, opponent_score
+    global your_name, opponent_name
 
     while True:
         from_server = str(sck.recv(4096).decode())
 
         if not from_server:
             break
-
 
         elif from_server.startswith("opponent_name$"):
             opponent_name = from_server.replace("opponent_name$", "")

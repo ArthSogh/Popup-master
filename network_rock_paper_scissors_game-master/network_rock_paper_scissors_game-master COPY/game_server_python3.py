@@ -44,8 +44,6 @@ player_data = []
 # Start server function
 def start_server():
     global server, HOST_ADDR, HOST_PORT  # code is fine without this
-    btnStart.config(state=tk.DISABLED)
-    btnStop.config(state=tk.NORMAL)
 
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     print(socket.AF_INET)
@@ -77,7 +75,7 @@ def accept_clients(the_server, y):
 # Function to receive message from current client AND
 # Send that message to other clients
 def send_receive_client_message(client_connection, client_ip_addr):
-    global server, client_name, clients, player_data, player0, player1
+    global server, client_name, clients
 
     client_msg = " "
 
@@ -104,42 +102,6 @@ def send_receive_client_message(client_connection, client_ip_addr):
         data = client_connection.recv(4096).decode()
         if not data:
             break
-
-        # get the player choice from received data
-        player_choice = data[11 : len(data)]
-
-        msg = {"choice": player_choice, "socket": client_connection}
-
-        if len(player_data) < 2:
-            player_data.append(msg)
-
-        if len(player_data) == 2:
-            # send player 1 choice to player 2 and vice versa
-            dataToSend0 = "$opponent_choice" + player_data[1].get("choice")
-            dataToSend1 = "$opponent_choice" + player_data[0].get("choice")
-            player_data[0].get("socket").send(dataToSend0.encode())
-            player_data[1].get("socket").send(dataToSend1.encode())
-
-            player_data = []
-
-    # find the client index then remove from both lists(client name list and connection list)
-    idx = get_client_index(clients, client_connection)
-    del clients_names[idx]
-    del clients[idx]
-    client_connection.close()
-
-    update_client_names_display(clients_names)  # update client names display
-
-
-# Return the index of the current client in the list of clients
-def get_client_index(client_list, curr_client):
-    idx = 0
-    for conn in client_list:
-        if conn == curr_client:
-            break
-        idx = idx + 1
-
-    return idx
 
 
 # Update client name display when a new client connects OR

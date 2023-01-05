@@ -7,7 +7,7 @@ GridLayout:
 
 <TouchFunctionsLightCircle@Widget>:
     btn3: btn3
-    pos_label: pos_label
+    myname: myname
 
     canvas.before:
         Color:
@@ -21,11 +21,11 @@ GridLayout:
         text: "cl"
         pos: 306,103
         size: 100,50
-        on_release: btn3.text = str(root.txt)
+        on_release: root.connect() #btn3.text = str(root.txt)
 
     Label:
-        id: pos_label
-        text: "Pos_Cl1"
+        id: myname
+        text: "Myname"
         font_size:'40sp'
         pos: 306,160
 

@@ -20,18 +20,15 @@ GridLayout:
         size_hint: (1, 0.3)
         Label:
             text: str(root.coord_x_plat)
-            font_size:'40sp'
             pos: 690,40
 
         Label:
             id: zoom_label
             text: "Zoom_Cl2"
-            font_size:'20sp'
             pos: 690,80
         Label:
             id: lbl_opponent_value
             text: "Opponent Result :"
-            font_size:'20sp'
             pos: 690,150
 
         Button:
@@ -40,4 +37,10 @@ GridLayout:
             pos: 690,10
             size: 100,50
             on_release: root.btn_touch_up()
+        Button:
+            id: btn2
+            text: "Connect"
+            pos: 690,300
+            size: 100,60
+            on_release: root.connect()
 
